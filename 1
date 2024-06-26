@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>حساب تسعيرة البيع</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            teckground-color: #4fc3f7;
+        }
+        .container {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 20px solid #ccc;
+            border-radius:10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            background-color: #ffeb3b;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 15px;
+            background-color: #ffeb3b;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #ffeb3b;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>حساب تسعيرة البيع</h1>
+        <div class="input-group">
+            <label for="productPrice">ثمن المنتج بالجملة:</label>
+            <input type="number" id="productPrice" placeholder="أدخل ثمن المنتج بالجملة">
+        </div>
+        <div class="input-group">
+            <label for="deliveryCost">ثمن التوصيل:</label>
+            <input type="number" id="deliveryCost" placeholder="أدخل ثمن التوصيل">
+        </div>
+        <div class="input-group">
+            <label for="adCost">تكلفة الإعلان التجريبي:</label>
+            <input type="number" id="adCost" placeholder="أدخل تكلفة الإعلان التجريبي">
+        </div>
+        <div class="input-group">
+            <label for="additionalCosts">مصاريف إضافية:</label>
+            <input type="number" id="additionalCosts" placeholder="أدخل المصاريف الإضافية">
+        </div>
+        <div class="input-group">
+            <label for="profitMargin">هامش الربح:</label>
+            <input type="number" id="profitMargin" placeholder="أدخل هامش الربح">
+        </div>
+        <button onclick="calculatePrice()">احسب السعر النهائي</button>
+        <div class="result" id="finalPrice">السعر النهائي: </div>
+    </div>
+
+    <script>
+        function calculatePrice() {
+            const productPrice = parseFloat(document.getElementById('productPrice').value) || 0;
+            const deliveryCost = parseFloat(document.getElementById('deliveryCost').value) || 0;
+            const adCost = parseFloat(document.getElementById('adCost').value) * 3 || 0;
+            const additionalCosts = parseFloat(document.getElementById('additionalCosts').value) || 0;
+            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+
+            const totalCost = productPrice + deliveryCost + adCost + additionalCosts;
+            const finalPrice = totalCost + profitMargin;
+
+            document.getElementById('finalPrice').innerText = `السعر النهائي: ${finalPrice.toFixed(2)} درهم مغربي`;
+        }
+    </script>
+</body>
+</html>
